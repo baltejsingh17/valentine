@@ -90,6 +90,19 @@
       0% { transform: translateY(0) scale(1); opacity: 1; }
       100% { transform: translateY(-250px) scale(1.2); opacity: 0; }
     }
+
+    /* Container for message + photo */
+    .valentine-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .valentine-message {
+      font-size: 24px;
+      color: #b30059;
+      margin-bottom: 25px;
+    }
   </style>
 </head>
 <body>
@@ -138,27 +151,30 @@
 
     // Yes button click
     document.getElementById("yes").addEventListener("click", () => {
-      // Remove buttons and change heading
+      // Remove buttons and update heading
       document.querySelector(".buttons").remove();
       document.querySelector("h1").textContent = "YAY!!! 💘🥰";
 
-      // Add message
-      let message = document.createElement("p");
-      message.textContent = "Best decision ever. I love you ❤️";
-      message.style.fontSize = "24px";
-      message.style.color = "#b30059";
-      document.body.appendChild(message);
+      // Create a container for message + photo
+      const containerDiv = document.createElement("div");
+      containerDiv.className = "valentine-content";
+      document.body.appendChild(containerDiv);
 
-      // Add photo
+      // Add the message
+      const message = document.createElement("div");
+      message.className = "valentine-message";
+      message.textContent = "Best decision ever. I love you ❤️";
+      containerDiv.appendChild(message);
+
+      // Add the photo
       const img = document.createElement("img");
       img.src = "us.jpeg";
       img.alt = "Us together";
       img.className = "fade-in";
-      img.style.marginTop = "25px";
       img.style.width = "50%"; // half size
       img.style.borderRadius = "20px";
       img.style.boxShadow = "0 10px 25px rgba(0,0,0,0.3)";
-      document.body.appendChild(img);
+      containerDiv.appendChild(img);
 
       // Start floating hearts and "I love you" text
       setInterval(createHeart, 300); // hearts every 0.3s
@@ -167,4 +183,3 @@
   </script>
 </body>
 </html>
-
