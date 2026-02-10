@@ -52,11 +52,10 @@
       top: 50px;
     }
 
-    /* Fade-in animation for image with delay */
+    /* Fade-in animation for image */
     .fade-in {
       opacity: 0;
-      animation: fadeIn 4s forwards;
-      animation-delay: 3.5s; /* delay for extra reading time */
+      animation: fadeIn 4s forwards; /* slow fade-in */
     }
 
     @keyframes fadeIn {
@@ -128,7 +127,7 @@
       noButton.style.top = randomY + "px";
     });
 
-    // Function to create floating hearts
+    // Floating hearts
     function createHeart() {
       const heart = document.createElement("div");
       heart.className = "heart";
@@ -139,7 +138,7 @@
       setTimeout(() => heart.remove(), 3000);
     }
 
-    // Function to create floating "I love you" text
+    // Floating "I love you"
     function createLoveText() {
       const text = document.createElement("div");
       text.className = "love-text";
@@ -150,13 +149,12 @@
       setTimeout(() => text.remove(), 3000);
     }
 
-    // Yes button click
     document.getElementById("yes").addEventListener("click", () => {
       // Remove buttons and update heading
       document.querySelector(".buttons").remove();
       document.querySelector("h1").textContent = "YAY!!! 💘🥰";
 
-      // Create a container for message + photo
+      // Create container for message + photo
       const containerDiv = document.createElement("div");
       containerDiv.className = "valentine-content";
       document.body.appendChild(containerDiv);
@@ -167,19 +165,21 @@
       message.textContent = "Best decision ever. I love you ❤️";
       containerDiv.appendChild(message);
 
-      // Add the photo with delayed fade-in
-      const img = document.createElement("img");
-      img.src = "us.jpeg";
-      img.alt = "Us together";
-      img.className = "fade-in";
-      img.style.width = "50%"; // half size
-      img.style.borderRadius = "20px";
-      img.style.boxShadow = "0 10px 25px rgba(0,0,0,0.3)";
-      containerDiv.appendChild(img);
+      // Start floating hearts and "I love you" immediately
+      setInterval(createHeart, 300);
+      setInterval(createLoveText, 500);
 
-      // Start floating hearts and "I love you" text
-      setInterval(createHeart, 300); // hearts every 0.3s
-      setInterval(createLoveText, 500); // "I love you" every 0.5s
+      // Add the photo after 3.5 seconds
+      setTimeout(() => {
+        const img = document.createElement("img");
+        img.src = "us.jpeg";
+        img.alt = "Us together";
+        img.className = "fade-in";
+        img.style.width = "50%"; // half size
+        img.style.borderRadius = "20px";
+        img.style.boxShadow = "0 10px 25px rgba(0,0,0,0.3)";
+        containerDiv.appendChild(img);
+      }, 3500);
     });
   </script>
 </body>
