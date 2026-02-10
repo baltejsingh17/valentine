@@ -52,10 +52,11 @@
       top: 50px;
     }
 
-    /* Fade-in animation for image */
+    /* Fade-in animation for image with delay */
     .fade-in {
       opacity: 0;
-      animation: fadeIn 4s forwards; /* slower fade-in */
+      animation: fadeIn 4s forwards;
+      animation-delay: 3.5s; /* delay for extra reading time */
     }
 
     @keyframes fadeIn {
@@ -166,7 +167,7 @@
       message.textContent = "Best decision ever. I love you ❤️";
       containerDiv.appendChild(message);
 
-      // Add the photo
+      // Add the photo with delayed fade-in
       const img = document.createElement("img");
       img.src = "us.jpeg";
       img.alt = "Us together";
