@@ -75,6 +75,21 @@
       0% { transform: translateY(0) scale(1); opacity: 1; }
       100% { transform: translateY(-300px) scale(1.5); opacity: 0; }
     }
+
+    /* I love you animation */
+    .love-text {
+      position: absolute;
+      font-size: 16px;
+      color: #b30059;
+      font-weight: bold;
+      animation: floatLove 3s linear forwards;
+      pointer-events: none;
+    }
+
+    @keyframes floatLove {
+      0% { transform: translateY(0) scale(1); opacity: 1; }
+      100% { transform: translateY(-250px) scale(1.2); opacity: 0; }
+    }
   </style>
 </head>
 <body>
@@ -89,7 +104,7 @@
     const noButton = document.getElementById("no");
     const container = document.querySelector(".buttons");
 
-    // No button moves
+    // Move the No button
     noButton.addEventListener("mouseenter", () => {
       const maxX = container.clientWidth - noButton.offsetWidth;
       const maxY = container.clientHeight - noButton.offsetHeight;
@@ -99,7 +114,7 @@
       noButton.style.top = randomY + "px";
     });
 
-    // Create floating hearts
+    // Function to create floating hearts
     function createHeart() {
       const heart = document.createElement("div");
       heart.className = "heart";
@@ -110,31 +125,44 @@
       setTimeout(() => heart.remove(), 3000);
     }
 
+    // Function to create floating "I love you" text
+    function createLoveText() {
+      const text = document.createElement("div");
+      text.className = "love-text";
+      text.textContent = "I love you ❤️";
+      text.style.left = Math.random() * (window.innerWidth - 100) + "px";
+      text.style.fontSize = (14 + Math.random() * 10) + "px";
+      document.body.appendChild(text);
+      setTimeout(() => text.remove(), 3000);
+    }
+
+    // Yes button click
     document.getElementById("yes").addEventListener("click", () => {
-      // Remove buttons and heading
+      // Remove buttons and change heading
       document.querySelector(".buttons").remove();
       document.querySelector("h1").textContent = "YAY!!! 💘🥰";
 
-      // Update message
+      // Add message
       let message = document.createElement("p");
       message.textContent = "Best decision ever. I love you ❤️";
       message.style.fontSize = "24px";
       message.style.color = "#b30059";
       document.body.appendChild(message);
 
-      // Create image dynamically
+      // Add photo
       const img = document.createElement("img");
       img.src = "us.jpeg";
       img.alt = "Us together";
       img.className = "fade-in";
       img.style.marginTop = "25px";
-      img.style.width = "50%"; // Half size
+      img.style.width = "50%"; // half size
       img.style.borderRadius = "20px";
       img.style.boxShadow = "0 10px 25px rgba(0,0,0,0.3)";
       document.body.appendChild(img);
 
-      // Start floating hearts
-      setInterval(createHeart, 300);
+      // Start floating hearts and "I love you" text
+      setInterval(createHeart, 300); // hearts every 0.3s
+      setInterval(createLoveText, 500); // "I love you" every 0.5s
     });
   </script>
 </body>
