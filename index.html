@@ -55,7 +55,7 @@
     /* Fade-in animation for image */
     .fade-in {
       opacity: 0;
-      animation: fadeIn 1.5s forwards; /* 1.5 seconds fade-in */
+      animation: fadeIn 1.5s forwards;
     }
 
     @keyframes fadeIn {
@@ -99,7 +99,7 @@
       noButton.style.top = randomY + "px";
     });
 
-    // Function to create floating hearts
+    // Create floating hearts
     function createHeart() {
       const heart = document.createElement("div");
       heart.className = "heart";
@@ -107,32 +107,34 @@
       heart.style.left = Math.random() * window.innerWidth + "px";
       heart.style.fontSize = (15 + Math.random() * 20) + "px";
       document.body.appendChild(heart);
-      // Remove heart after animation ends
       setTimeout(() => heart.remove(), 3000);
     }
 
-    // Yes button click
     document.getElementById("yes").addEventListener("click", () => {
-      document.body.innerHTML = `
-        <h1>YAY!!! 💘🥰</h1>
-        <p style="font-size:24px; color:#b30059;">
-          Best decision ever. I love you ❤️
-        </p>
-        <img
-          src="us.jpeg"
-          alt="Us together"
-          class="fade-in"
-          style="
-            margin-top: 25px;
-            max-width: 40%;
-            border-radius: 20px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-          "
-        />
-      `;
+      // Remove buttons and heading
+      document.querySelector(".buttons").remove();
+      document.querySelector("h1").textContent = "YAY!!! 💘🥰";
 
-      // Start generating floating hearts
-      setInterval(createHeart, 300); // every 0.3 seconds
+      // Update message
+      let message = document.createElement("p");
+      message.textContent = "Best decision ever. I love you ❤️";
+      message.style.fontSize = "24px";
+      message.style.color = "#b30059";
+      document.body.appendChild(message);
+
+      // Create image dynamically
+      const img = document.createElement("img");
+      img.src = "us.jpeg";
+      img.alt = "Us together";
+      img.className = "fade-in";
+      img.style.marginTop = "25px";
+      img.style.width = "50%"; // Half size
+      img.style.borderRadius = "20px";
+      img.style.boxShadow = "0 10px 25px rgba(0,0,0,0.3)";
+      document.body.appendChild(img);
+
+      // Start floating hearts
+      setInterval(createHeart, 300);
     });
   </script>
 </body>
